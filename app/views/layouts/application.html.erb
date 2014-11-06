@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--This is the HTML that wraps the main content of every page (e.g. the header and footer)-->
+<html>
+<head>
+    <link rel="stylesheet/less" href="/style.less">
+    <script src="/less.js"></script>
+</head>
+<body>
+    <header>
+        <div class="wrapper">
+            <a href="http://localhost:3000"> <img src="/gfx/logo.png" alt="logo"> </a>
+            <!--<img src="/gfx/logo.png"> -->
+            <span style="color:black">Page Customizer</span>
+            <% if user_signed_in? %>
+                <!--If user is logged in, it will display a log out button.
+                link_to takes provided text and URL and generates hyperlink -->
+				<%= form_tag("/users/edit", method: "get") do %>
+                <%= submit_tag "Edit account" %>
+				<% end %>
+				<%= form_tag("/users/sign_out", method: "delete") do %>
+                <%= submit_tag "Log Out" %>
+				<% end %>
+				<%= form_tag("/urls/new", method: "get") do %>
+                <%= submit_tag "Add URL" %>
+				<% end %>
+            <% else %>
+                <%= form_tag("/users/sign_in", method: "get") do %>
+                <%= submit_tag "Log In" %>
+			<% end %>
+            <% end %>
+				<%= form_tag("/static_pages/about", method: "get") do %>
+				<%= submit_tag("About") %>
+			<% end %>
+				<%= form_tag("/static_pages/contact", method: "get") do %>
+				<%= submit_tag("Contact") %>
+			<% end %>
+        </div>
+    </header>
+    <div id="content">
+        <div class="wrapper">
+            <% flash.each do |name, msg| %>
+                <%= content_tag :div, msg, class: "flash #{name}" %>
+            <% end %>
+            <%= yield %>
+        </div>
+    </div>
+
+</body>
+</html>

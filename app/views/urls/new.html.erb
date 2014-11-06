@@ -1,0 +1,11 @@
+<h1>Add URL</h1>
+
+<%= form_for @url do |f| %>
+  <p>
+    <%= f.text_field :link, placeholder: "Website URL" %>
+  </p>
+  
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,28 @@
+﻿Product name: HomePage 
+Team name: HAnDLe
+release date: 12/11/14
+revision number: 1
+
+High level goals:
+Be able to add favorite urls onto user profile
+Be able to see useful data instead of a static image
+Be able to customize the size and location of the url boxes
+Be able to integrate their own code it increase usefulness of the boxes.
+
+User Stories:
+	Sprint 1:
+Allowed to make an account (login and pw)
+Able to insert their favorite urls
+For now use a static image of the url in the box 
+Have the abilities to customize the box location and size
+Allow user to customize the background 
+insert an image
+	Sprint 2:
+Start getting useful information to display instead of image
+IMAP for email urls
+Start doing this for other sites
+Facebook, Reddit, etc
+Work on an open api version to allow other sites to edit the display of their sites
+	Sprint 3:
+Continue working on the api 
+Work on improve the CSS and HTML files (will probably look horrible at this point)

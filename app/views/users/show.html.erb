@@ -1,0 +1,63 @@
+<!--This is where you add what is shown when you log inside
+-->
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/cupertino/jquery-ui.css" />
+
+<!--This file projects the static images while also allowing to resize and drag the images around -->
+<% for i in @user.boxes %>
+    <!--dynamic facebook section -->
+    <% if i.url.link.include? "facebook.com" %>
+    <!--section for the grey box-->
+        <div class="drag"style="width:300px; height:350px;background: #ccc; position:relative; border-radius: 2%">
+            <a href=<%= i.url.link %> target="_blank">
+                <img src="/gfx/fblogo.png">
+            </a>
+            <!--the red box notification display-->
+            <div id="notif" style="width:40px; height:40px; background:red; position:absolute; display: none">
+                <p style="text-align: center; vertical-align: middle; line-height: 10px" >
+                    0
+                </p>
+            </div>
+            <!--login/logout area-->
+            <div id="fbInfo">
+                <script src="/fb.js"></script>
+                <!--login button so it can hide/unhide-->
+                <div id="fbLoginButton">
+                    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+                    </fb:login-button>
+                </div>
+
+                <!--text showing the status for the user-->
+                <div id="status" style="position:absolute">
+                </div>
+
+                <button id="logoutBtn" style="display: none"> Logout </button>
+            </div>
+        </div>
+    <% else %>
+        <!--static image call -->
+        <div class="drag" style="display:inline-block">
+        	<a href=<%= i.url.link %> target="_blank">
+        	<%= image_tag i.image, :style => "border:1px solid black", :class=>"resize"%>
+        	</a>
+    	</div>
+    <% end %>
+<% end %>
+
+<script>
+zIndex = 30;
+$('.resize').resizable();
+$('.drag').draggable({
+    appendTo: 'body',
+    start: function(event, ui) {
+        isDraggingMedia = true;
+        $(this).css({'z-index':++zIndex});
+    },
+    stop: function(event, ui) {
+        isDraggingMedia = false;
+        // blah
+    }
+},{snap: true},{ snapTolerance: 12 });
+
+</script>

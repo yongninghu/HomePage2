@@ -1,0 +1,24 @@
+<!--This is the view that serves as the home page view, when a user is not logged in -->
+
+<img src="/gfx/miniscrum.jpg">
+ 
+<div class="panel right">
+  <h1>Sign up Here!</h1>
+   <!--form_for helper method creates a form and pass @user variable as param -->
+  <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    <% end %>
+ 
+    <%= f.text_field :email, placeholder: "email" %>
+    <%= f.text_field :username, placeholder: "username" %>
+    <%= f.text_field :name, placeholder: "name" %>
+    <%= f.password_field :password, placeholder: "password" %>
+    <%= f.password_field :password_confirmation, placeholder: "confirm password" %>
+    <%= f.submit "Create Account" %>
+  <% end %>
+</div>
